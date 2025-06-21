@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <home-view />
-  </div>
+  <router-view />
 </template>
 
 <script setup lang="ts">
-import homeView from '@/features/home/views/homeView.vue';
+// No es necesario importar componentes aquí, el router se encarga de mostrar la vista
 </script>
 
 <style scoped>
