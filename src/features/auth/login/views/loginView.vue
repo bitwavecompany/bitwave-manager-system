@@ -1,421 +1,87 @@
-<style>
-/* NUEVOS ESTILOS MODERNOS PARA LOGIN */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: #181e29;
-    min-height: 100vh;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow: auto;
-}
-
-.login-container {
-    min-height: 100vh;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #181e29;
-    position: relative;
-    z-index: 2;
-    padding: 0;
-}
-
-.login-card {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 48px 40px;
-    box-shadow: 
-        0 4px 6px -1px rgba(0, 0, 0, 0.1),
-        0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    border: 1px solid #e5e7eb;
-    position: relative;
-    max-width: 420px;
-    width: 100%;
-}
-
-.header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.title {
-    font-size: 2.25rem;
-    font-weight: 700;
-    color: #1f2937;
-    margin-bottom: 8px;
-    letter-spacing: -0.025em;
-}
-
-.subtitle {
-    color: #6b7280;
-    font-size: 1rem;
-    font-weight: 400;
-}
-
-.login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-
-.input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.input-label {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #374151;
-    margin-left: 2px;
-}
-
-.input-field {
-    width: 100%;
-    padding: 16px 16px;
-    border: 1.5px solid #d1d5db;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 400;
-    background: #ffffff;
-    transition: all 0.2s ease;
-    outline: none;
-    color: #1f2937;
-}
-
-.input-field:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-.input-field::placeholder {
-    color: #9ca3af;
-}
-
-.password-container {
-    position: relative;
-}
-
-.toggle-password {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #6b7280;
-    padding: 8px;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.toggle-password:hover {
-    color: #374151;
-    background: #f3f4f6;
-}
-
-.eye-icon {
-    width: 20px;
-    height: 20px;
-}
-
-.form-options {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: -8px;
-}
-
-.forgot-password {
-    color: #3b82f6;
-    text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    padding: 6px 8px;
-    border-radius: 6px;
-}
-
-.forgot-password:hover {
-    color: #2563eb;
-    background: rgba(59, 130, 246, 0.05);
-}
-
-.login-button {
-    width: 100%;
-    padding: 16px 24px;
-    background: #1f2937;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    position: relative;
-    overflow: hidden;
-    margin-top: 8px;
-}
-
-.login-button:hover {
-    background: #111827;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.login-button:active {
-    transform: translateY(0);
-}
-
-.arrow-icon {
-    transition: transform 0.2s ease;
-}
-
-.login-button:hover .arrow-icon {
-    transform: translateX(2px);
-}
-
-.register-link {
-    text-align: center;
-    font-size: 0.875rem;
-    color: #6b7280;
-    margin-top: 16px;
-}
-
-.register-button {
-    color: #3b82f6;
-    text-decoration: none;
-    font-weight: 600;
-    margin-left: 4px;
-    transition: all 0.2s ease;
-    padding: 2px 6px;
-    border-radius: 4px;
-}
-
-.register-button:hover {
-    color: #2563eb;
-    background: rgba(59, 130, 246, 0.05);
-}
-
-.background-decoration {
-    display: none;
-}
-
-@media (max-width: 480px) {
-    .login-container {
-        padding: 16px;
-    }
-    .login-card {
-        padding: 40px 32px;
-        border-radius: 12px;
-    }
-    .title {
-        font-size: 2rem;
-    }
-    .input-field {
-        padding: 14px 16px;
-        font-size: 16px;
-    }
-    .login-button {
-        padding: 14px 20px;
-    }
-}
-
-@media (max-height: 700px) {
-    .login-card {
-        padding: 36px 40px;
-    }
-    .login-form {
-        gap: 20px;
-    }
-    .header {
-        margin-bottom: 32px;
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    body {
-        background: #0f172a;
-    }
-    .login-card {
-        background: #1e293b;
-        border: 1px solid #334155;
-    }
-    .title {
-        color: #f1f5f9;
-    }
-    .subtitle {
-        color: #94a3b8;
-    }
-    .input-label {
-        color: #fff; /* Cambiado a blanco puro para mayor contraste */
-        font-weight: 700; /* Más negrita */
-        text-shadow: 0 1px 2px rgba(0,0,0,0.08); /* Sutil sombra para resaltar */
-    }
-    .input-field {
-        background: #334155;
-        border-color: #475569;
-        color: #f1f5f9;
-    }
-    .input-field:focus {
-        border-color: #3b82f6;
-        background: #334155;
-    }
-    .register-link {
-        color: #94a3b8;
-    }
-    .login-button {
-        background: #3b82f6;
-    }
-    .login-button:hover {
-        background: #2563eb;
-    }
-}
-
-.login-button.loading {
-    pointer-events: none;
-    opacity: 0.8;
-}
-
-.login-button.loading span {
-    opacity: 0;
-}
-
-.login-button.loading::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border: 2px solid transparent;
-    border-top-color: #ffffff;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.login-button:focus-visible,
-.forgot-password:focus-visible,
-.register-button:focus-visible {
-    outline: 2px solid #3b82f6;
-    outline-offset: 2px;
-}
-
-.input-field:focus-visible {
-    outline: none;
-}
-
-* {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-@media (prefers-contrast: high) {
-    .login-card {
-        border: 2px solid #000000;
-    }
-    .input-field {
-        border-width: 2px;
-    }
-    .login-button {
-        background: #000000;
-    }
-}
-
-.input-field.error {
-    border-color: #ef4444;
-    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-}
-
-.input-field.error:focus {
-    border-color: #ef4444;
-    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
-}
-
-.login-button {
-    position: relative;
-    overflow: hidden;
-}
-
-.ripple {
-    position: absolute;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.3);
-    transform: scale(0);
-    animation: ripple 0.6s linear;
-    pointer-events: none;
-}
-
-@keyframes ripple {
-    to {
-        transform: scale(4);
-        opacity: 0;
-    }
-}
-</style>
-
 <script setup>
 import { Icon } from '@iconify/vue';
-// ...aquí puedes agregar lógica para mostrar/ocultar contraseña si lo deseas...
+import { ref } from 'vue';
+
+const loading = ref(false);
+const ripples = ref([]);
+
+function handleLogin(e) {
+  loading.value = true;
+  setTimeout(() => loading.value = false, 1500); // Simulación
+}
+
+function createRipple(e) {
+  const button = e.currentTarget;
+  const rect = button.getBoundingClientRect();
+  const diameter = Math.max(button.clientWidth, button.clientHeight);
+  const radius = diameter / 2;
+  const x = e.clientX - rect.left - radius;
+  const y = e.clientY - rect.top - radius;
+  const id = Date.now() + Math.random();
+  ripples.value.push({ id, x, y, diameter });
+  setTimeout(() => {
+    ripples.value = ripples.value.filter(r => r.id !== id);
+  }, 600);
+}
 </script>
 
 <template>
-  <div class="login-container">
-    <div class="login-card">
-      <div class="header">
-        <p class="title">BitWave</p>
-        <p class="subtitle">Te da la bienvenida</p>
+  <div class="login-container flex min-h-screen w-screen items-center justify-center bg-[#181e29] dark:bg-[#0f172a]">
+    <div class="login-card bg-white dark:bg-[#1e293b] border border-gray-200 dark:border-[#334155] rounded-2xl md:rounded-xl shadow-lg p-12 md:p-10 max-w-md w-full relative z-10">
+      <div class="header text-center mb-10 md:mb-8">
+        <p class="title text-4xl font-bold text-gray-800 dark:text-slate-100 mb-2 tracking-tight">BitWave</p>
+        <p class="subtitle text-gray-500 dark:text-slate-400 text-base font-normal">Te da la bienvenida</p>
       </div>
-      <form class="login-form">
-        <div class="input-group">
-          <label for="username" class="input-label">Usuario</label>
-          <input type="text" name="username" id="username" placeholder="Ingresa tu correo o usuario" class="input-field">
+      <form class="login-form flex flex-col gap-6 md:gap-6" @submit.prevent="handleLogin">
+        <div class="input-group flex flex-col gap-2">
+          <label for="username" class="input-label text-sm font-semibold text-gray-700 dark:text-white dark:font-bold ml-1">Usuario</label>
+          <input type="text" name="username" id="username" placeholder="Ingresa tu correo o usuario" class="input-field w-full px-4 py-4 md:py-4 border border-gray-300 dark:border-[#475569] rounded-lg text-base font-normal bg-white dark:bg-[#334155] text-gray-800 dark:text-slate-100 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-500 placeholder-gray-400 dark:placeholder-slate-400 transition-all outline-none" />
         </div>
-        <div class="input-group">
-          <label for="password" class="input-label">Contraseña</label>
-          <div class="password-container">
-            <input type="password" name="password" id="password" placeholder="Ingresa tu contraseña" class="input-field">
-            <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+        <div class="input-group flex flex-col gap-2">
+          <label for="password" class="input-label text-sm font-semibold text-gray-700 dark:text-white dark:font-bold ml-1">Contraseña</label>
+          <div class="password-container relative">
+            <input type="password" name="password" id="password" placeholder="Ingresa tu contraseña" class="input-field w-full px-4 py-4 md:py-4 border border-gray-300 dark:border-[#475569] rounded-lg text-base font-normal bg-white dark:bg-[#334155] text-gray-800 dark:text-slate-100 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-500 placeholder-gray-400 dark:placeholder-slate-400 transition-all outline-none" />
+            <button type="button" class="toggle-password absolute right-3 top-1/2 -translate-y-1/2 bg-transparent border-none cursor-pointer text-gray-400 hover:text-gray-700 dark:hover:bg-slate-100/10 p-2 rounded-md flex items-center justify-center transition-colors" aria-label="Toggle password visibility">
               <Icon icon="mdi:eye" width="24" height="24" style="color: #000" class="eye-icon" />
             </button>
           </div>
         </div>
-        <div class="form-options">
-          <a rel="noopener noreferrer" href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+        <div class="form-options flex justify-end -mt-2">
+          <a rel="noopener noreferrer" href="#" class="forgot-password text-blue-500 hover:text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-500/10 text-sm font-medium transition-colors px-2 py-1 rounded focus-visible:outline focus-visible:outline-blue-500">¿Olvidaste tu contraseña?</a>
         </div>
-        <button class="login-button">
+        <button
+          class="login-button w-full py-4 px-6 bg-gray-900 dark:bg-blue-600 text-white rounded-lg text-base font-semibold flex items-center justify-center gap-2 relative overflow-hidden mt-2 hover:bg-gray-800 dark:hover:bg-blue-700 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 transition-all focus-visible:outline focus-visible:outline-blue-500 disabled:opacity-80 disabled:pointer-events-none"
+          :disabled="loading"
+          @click="createRipple"
+        >
+          <span v-for="r in ripples" :key="r.id"
+            class="pointer-events-none absolute bg-white/30 rounded-full z-10"
+            :style="{
+              width: r.diameter + 'px',
+              height: r.diameter + 'px',
+              left: r.x + 'px',
+              top: r.y + 'px',
+              animation: 'ripple 0.6s linear',
+            }"
+          ></span>
+          <span v-if="!loading" class="arrow-icon transition-transform">→</span>
+          <span v-else class="flex items-center justify-center"><Icon icon="mdi:loading" class="animate-spin" width="22" height="22" /></span>
           Iniciar sesión
-          <span class="arrow-icon" aria-hidden="true">→</span>
         </button>
       </form>
-      <p class="register-link">¿No tienes una cuenta?
-        <a rel="noopener noreferrer" href="#" class="register-button">Regístrate</a>
+      <p class="register-link text-center text-sm text-gray-500 dark:text-slate-400 mt-4">¿No tienes una cuenta?
+        <a rel="noopener noreferrer" href="#" class="register-button text-blue-500 hover:text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-500/10 font-semibold ml-1 px-2 py-1 rounded transition-colors focus-visible:outline focus-visible:outline-blue-500">Regístrate</a>
       </p>
     </div>
   </div>
 </template>
+
+<style>
+/* Solo el keyframe, el resto se reemplaza por Tailwind */
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+</style>
