@@ -4,10 +4,10 @@ import { ref } from 'vue';
 
 const loading = ref(false);
 const ripples = ref([]);
+const showPassword = ref(false);
 
 function handleLogin(e) {
-  loading.value = true;
-  setTimeout(() => loading.value = false, 1500); // Simulación
+  // Sin funcionalidad
 }
 
 function createRipple(e) {
@@ -22,6 +22,10 @@ function createRipple(e) {
   setTimeout(() => {
     ripples.value = ripples.value.filter(r => r.id !== id);
   }, 600);
+}
+
+function togglePassword() {
+  showPassword.value = !showPassword.value;
 }
 </script>
 
@@ -40,19 +44,20 @@ function createRipple(e) {
         <div class="input-group flex flex-col gap-2">
           <label for="password" class="input-label text-sm font-semibold text-gray-700 dark:text-white dark:font-bold ml-1">Contraseña</label>
           <div class="password-container relative">
-            <input type="password" name="password" id="password" placeholder="Ingresa tu contraseña" class="input-field w-full px-4 py-4 md:py-4 border border-gray-300 dark:border-[#475569] rounded-lg text-base font-normal bg-white dark:bg-[#334155] text-gray-800 dark:text-slate-100 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-500 placeholder-gray-400 dark:placeholder-slate-400 transition-all outline-none" />
-            <button type="button" class="toggle-password absolute right-3 top-1/2 -translate-y-1/2 bg-transparent border-none cursor-pointer text-gray-400 hover:text-gray-700 dark:hover:bg-slate-100/10 p-2 rounded-md flex items-center justify-center transition-colors" aria-label="Toggle password visibility">
-              <Icon icon="mdi:eye" width="24" height="24" style="color: #000" class="eye-icon" />
+            <input :type="showPassword ? 'text' : 'password'" name="password" id="password" placeholder="Ingresa tu contraseña" class="input-field w-full px-4 py-4 md:py-4 border border-gray-300 dark:border-[#475569] rounded-lg text-base font-normal bg-white dark:bg-[#334155] text-gray-800 dark:text-slate-100 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-500 placeholder-gray-400 dark:placeholder-slate-400 transition-all outline-none" />
+            <button type="button" @click="togglePassword" class="toggle-password absolute right-3 top-1/2 -translate-y-1/2 bg-transparent border-none cursor-pointer text-gray-400 hover:text-gray-700 dark:hover:bg-slate-100/10 p-2 rounded-md flex items-center justify-center transition-colors" aria-label="Toggle password visibility">
+              <Icon v-if="!showPassword" icon="mdi:eye" width="24" height="24" style="color: #000" class="eye-icon" />
+              <Icon v-else icon="mdi:eye-off" width="24" height="24" style="color: #000" class="eye-icon" />
             </button>
           </div>
         </div>
         <div class="form-options flex justify-end -mt-2">
-          <a rel="noopener noreferrer" href="#" class="forgot-password text-blue-500 hover:text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-500/10 text-sm font-medium transition-colors px-2 py-1 rounded focus-visible:outline focus-visible:outline-blue-500">¿Olvidaste tu contraseña?</a>
+          <a rel="noopener noreferrer" href="#" class="forgot-password text-blue-500 text-sm font-medium transition-colors px-2 py-1 rounded focus-visible:outline focus-visible:outline-blue-500" @click.prevent>¿Olvidaste tu contraseña?</a>
         </div>
         <button
           class="login-button w-full py-4 px-6 bg-gray-900 dark:bg-blue-600 text-white rounded-lg text-base font-semibold flex items-center justify-center gap-2 relative overflow-hidden mt-2 hover:bg-gray-800 dark:hover:bg-blue-700 hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 transition-all focus-visible:outline focus-visible:outline-blue-500 disabled:opacity-80 disabled:pointer-events-none"
-          :disabled="loading"
-          @click="createRipple"
+          type="button"
+          @click.prevent
         >
           <span v-for="r in ripples" :key="r.id"
             class="pointer-events-none absolute bg-white/30 rounded-full z-10"
@@ -70,7 +75,7 @@ function createRipple(e) {
         </button>
       </form>
       <p class="register-link text-center text-sm text-gray-500 dark:text-slate-400 mt-4">¿No tienes una cuenta?
-        <a rel="noopener noreferrer" href="#" class="register-button text-blue-500 hover:text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-500/10 font-semibold ml-1 px-2 py-1 rounded transition-colors focus-visible:outline focus-visible:outline-blue-500">Regístrate</a>
+        <a rel="noopener noreferrer" href="#" class="register-button text-blue-500 font-semibold ml-1 px-2 py-1 rounded transition-colors focus-visible:outline focus-visible:outline-blue-500" @click.prevent>Regístrate</a>
       </p>
     </div>
   </div>
