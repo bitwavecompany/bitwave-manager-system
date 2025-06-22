@@ -86,6 +86,7 @@ async function handleLogin(e: Event) {
     // Aquí puedes guardar el token, redirigir, etc.
     console.log('Login exitoso:', response);
     toast.success('Inicio de sesión exitoso');
+    router.push('/home');
   } catch (error: any) {
     const data = error.response?.data;
     errorMsg.value = data?.message || 'Error al iniciar sesión';
